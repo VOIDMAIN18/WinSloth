@@ -1,0 +1,204 @@
+# 9 June 2026 
+
+## Current Status
+
+Right now I am working on the overall structure of WinSloth. Before writing a lot of code, I want to understand the technologies that I will use and how fast file searching tools work internally.
+
+I do not have much experience with C++ yet. I am learning C++ while building this project, so I expect to run into many mistakes and dead ends along the way. My goal is not to build everything perfectly on the first attempt. The goal is to learn, improve, and understand how things work under the hood.
+
+I am building this project because I enjoy making things and I want to challenge myself with something practical.
+
+## What I Learned Today
+
+Today I learned about two different searching methods: Linear Search and Binary Search.
+
+### Linear Search
+
+Suppose we have a list of files:
+
+* apple.txt
+* banana.txt
+* chrome.exe
+
+If a user searches for `chrome.exe`, a simple approach would be:
+
+```cpp
+for (each file)
+{
+    if (file == "chrome.exe")
+    {
+        found;
+    }
+}
+```
+
+The computer checks every file one by one until it finds a match.
+
+In the example above, it would check:
+
+1. apple.txt
+2. banana.txt
+3. chrome.exe
+
+This is called Linear Search.
+
+The problem is that if there are millions of files, the computer may need to perform millions of comparisons in the worst case.
+
+### Binary Search
+
+Binary Search is much faster, but it only works when the data is already sorted.
+
+Example:
+
+```
+1 2 3 4 5 6 7 8 9
+```
+
+Find: `7`
+
+Instead of starting from the beginning, Binary Search starts from the middle.
+
+* Middle = 5
+* Is 7 greater than 5? Yes.
+* Ignore everything on the left side.
+* Remaining values: 6, 7, 8, 9
+
+Now check the middle again.
+
+* Middle = 7
+* Found
+
+Only two comparisons were needed.
+
+### Why Binary Search Is Powerful
+
+Imagine one million sorted files.
+
+Linear Search:
+
+* Worst case: 1,000,000 comparisons
+
+Binary Search:
+
+* log₂(1,000,000)
+* Approximately 20 comparisons
+
+That difference is huge.
+
+### Binary Search With Words
+
+Example:
+
+```
+apple
+banana
+chrome
+discord
+firefox
+spotify
+```
+
+Search for: `firefox`
+
+Binary Search starts from the middle.
+
+Middle:
+
+```
+discord
+```
+
+The comparison is done alphabetically.
+
+* Compare `firefox` with `discord`
+* Since `f` comes after `d`, the target must be on the right side
+
+Now we can ignore:
+
+```
+apple
+banana
+chrome
+discord
+```
+
+Remaining:
+
+```
+firefox
+spotify
+```
+
+Check the middle again.
+
+Result:
+
+```
+firefox
+```
+
+Found.
+
+### How Does The Computer Find The Middle?
+
+Example:
+
+```
+Index: 0 1 2 3 4 5
+
+Files:
+apple
+banana
+chrome
+discord
+firefox
+spotify
+```
+
+The middle index is calculated using:
+
+```cpp
+middle = (left + right) / 2;
+```
+
+Initially:
+
+```cpp
+left = 0
+right = 5
+
+middle = (0 + 5) / 2
+middle = 2
+```
+
+Index 2 is:
+
+```
+chrome
+```
+
+Since `firefox` comes after `chrome`, we ignore the left half.
+
+Now:
+
+```cpp
+left = 3
+right = 5
+
+middle = (3 + 5) / 2
+middle = 4
+```
+
+Index 4 is:
+
+```
+firefox
+```
+
+Found.
+
+## Thoughts
+
+I knew searching existed, but I never really thought about how expensive it becomes when dealing with millions of files. Learning about Binary Search made me realize why data organization matters so much for performance.
+
+I still have a lot to learn before implementing a proper search engine, but understanding these fundamentals feels like a good first step.

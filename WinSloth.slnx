@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="WinSloth.vcxproj" Id="79e09836-9c6b-4886-8495-1e93a208590a" />
+</Solution>
