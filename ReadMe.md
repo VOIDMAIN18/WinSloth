@@ -1,3 +1,4 @@
+                                          <img width="1536" height="1024" alt="winsloth" src="https://github.com/user-attachments/assets/03a9bb97-24ec-4fe7-a891-9740f8f5855d" />
 
 # WinSloth
 
