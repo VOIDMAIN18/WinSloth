@@ -1,12 +1,20 @@
-                                          <img width="1536" height="1024" alt="winsloth" src="https://github.com/user-attachments/assets/03a9bb97-24ec-4fe7-a891-9740f8f5855d" />
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/03a9bb97-24ec-4fe7-a891-9740f8f5855d" width="120">
 
 # WinSloth
 
-A lightweight Windows search tool built in C++.
+### Fast, keyboard-first Windows search utility written in C++.
 
-Search files, folders, and applications instantly from a simple keyboard-first interface. WinSloth is designed to be fast, lightweight, and practical, with a focus on native Windows performance and minimal resource usage.
+Find files, folders, and applications instantly with a lightweight native interface built on WinAPI and ImGui.
 
----
+![C++](https://img.shields.io/badge/C%2B%2B-20-blue)
+![Platform](https://img.shields.io/badge/Platform-Windows-blue)
+![Status](https://img.shields.io/badge/Status-Work%20In%20Progress-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+</div>
+
 
 ## What is WinSloth?
 
