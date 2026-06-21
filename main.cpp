@@ -1,10 +1,10 @@
-#include <iostream>
+#include <iostream> // 
 #include <string> 
 #include <vector>
 #include <filesystem>  
 #include <sstream>
 #include <algorithm> 
-
+#include <cstdlib>  
 
 #define RESET  "\033[0m"
 #define RED    "\033[31m"
@@ -21,9 +21,10 @@ struct FileInfo
 	std::wstring filepath;
 };
 
-bool sortFile(const FileInfo& file1 , const FileInfo& file2 ) {
+bool sortFile(const FileInfo& file1, const FileInfo& file2) {
 	// file1 and 2 for comp
 	return file1.filename < file2.filename; // if yes then true 
+
 }
 
 
@@ -41,12 +42,12 @@ int main() {
 
 	while (start != end) {
 		// ! if no error find  
-		if (!errorbyfilesystem) { 
+		if (!errorbyfilesystem) {
 
 			FileInfo tempFile;
 			tempFile.filename = start->path().filename().wstring();
 			tempFile.filepath = start->path().wstring();
-			file.push_back(tempFile); 
+			file.push_back(tempFile);
 
 
 		}
@@ -59,10 +60,10 @@ int main() {
 	}
 	else {
 		std::cout << "File Size-" << file.size() << "\n";
-		std::sort(file.begin() , file.end() , sortFile);  // ! begin and end a methold that give an object ittrator that point at the begin  and end 
+		std::sort(file.begin(), file.end(), sortFile);  // ! begin and end a methold that give an object ittrator that point at the begin  and end 
 		//! and this sort work in the file vector no need to make new var ect 
-		for (size_t i = 0; i < file.size(); i++) {  
-			std::wcout << GREEN <<"["<< file[i].filename << "]" WHITE << '\n';
+		for (size_t i = 0; i < file.size(); i++) {
+			std::wcout << GREEN << "[" << file[i].filename << "]" WHITE << '\n';
 		}
 		std::cout << "----------------------------------------------------------------------\n";
 		std::wstring userGiveFileName{};
@@ -71,16 +72,38 @@ int main() {
 		std::getline(std::wcin >> std::ws, userGiveFileName);
 		for (size_t i = 0; i < file.size(); i++) {
 			if (file[i].filename == userGiveFileName) {
-				std::wcout << "found the file"<<'\n';
+				std::wcout << "found the file" << '\n';
 				std::wcout << RED << "File Location:" << file[i].filepath << '\n';
+				std::cout << "-----------------------------------------------------------" << std::endl;
+				{ // ? this is called block scope 
+					int usergiventemp{};
+					std::cout << GREEN << "Press (1) to open the file press (2) to not open the file-" << WHITE;
+					std::cin >> usergiventemp;
+					if (usergiventemp == 1) {
+						std::wstring command{ L"\"" + file[i].filepath + L"\"" };
+						_wsystem(command.c_str());
+
+						
+					
+
+
+					}
+					else {
+
+					}
+
+				}
+				
+
+
 
 			}
 
 		}
-		
-	
+
+
 	}
-	
+
 
 
 	system("pause");

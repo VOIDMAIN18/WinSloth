@@ -140,10 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Win.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docs\dev%28voidmain%29.mb" />
     <None Include="ReadMe.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Linux.h" />
+    <ClInclude Include="mac.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
