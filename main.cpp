@@ -83,10 +83,6 @@ int main() {
 						std::wstring command{ L"\"" + file[i].filepath + L"\"" };
 						_wsystem(command.c_str());
 
-						
-					
-
-
 					}
 					else {
 

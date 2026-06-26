@@ -378,5 +378,132 @@ Right now, I am working on taking the file name as input from the user and then 
 Once that is working, the program will allow users to quickly search for a file and view its exact location on the system.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-21-06-2026
+## 22-06-2026
 
+Today I was looking at how my current file search system works before replacing it with binary search.
+
+Right now I'm using a linear search:
+
+```cpp
+if (file[i].filename == userGiveFileName)
+```
+
+This checks every file one by one until it finds a match. It works, but it's slow for large numbers of files because the time complexity is **O(n)**.
+
+---
+
+I also looked at how I open the selected file:
+
+```cpp
+std::wstring command{L"\"" + file[i].filepath + L"\""};
+_wsystem(command.c_str());
+```
+
+I learned that `_wsystem()` is Windows-specific because it accepts a wide string (`std::wstring`). It won't work on Linux or macOS.
+
+On Linux, I would probably need something like:
+
+```cpp
+xdg-open
+```
+
+and on macOS:
+
+```cpp
+open
+```
+
+So in the future I'll detect the operating system and call the appropriate API or command instead of relying on Windows-only functions.
+
+For now, I'm keeping it simple with the standard library and will improve platform support later.
+
+---
+
+## Binary Search
+
+Now I'm trying to replace the linear search with binary search.
+
+First I need the data to be sorted by filename.
+
+```cpp
+size_t left{0};
+size_t right{file.size() - 1};
+
+while (left <= right)
+{
+    // search happens here
+}
+```
+
+My understanding of binary search is this:
+
+Suppose I have:
+
+```
+[1, 2, 3, 4, 5]
+```
+
+I want to find **4**.
+
+First I calculate the middle index:
+
+```
+mid = (left + right) / 2
+```
+
+Initially:
+
+```
+left = 0
+right = 4
+
+mid = (0 + 4) / 2 = 2
+```
+
+The middle element is:
+
+```
+3
+```
+
+Now I compare my target (4) with the middle element.
+
+```
+4 > 3
+```
+
+Since everything to the left of 3 is also smaller, I can safely discard that entire half.
+
+Now the search range becomes:
+
+```
+[4, 5]
+```
+
+So:
+
+```
+left = mid + 1 = 3
+right = 4
+```
+
+Calculate the middle again:
+
+```
+mid = (3 + 4) / 2 = 3
+```
+
+The middle element is:
+
+```
+4
+```
+
+This matches the target, so the search is finished.
+
+The important idea is that binary search never checks every element. Every comparison removes half of the remaining search space, making it much faster than linear search.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+26-06-2026
