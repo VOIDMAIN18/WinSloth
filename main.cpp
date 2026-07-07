@@ -6,12 +6,11 @@
 #include <algorithm> 
 #include <cstdlib>  
 
-#define RESET  "\033[0m"
+#define RESET  "\033[0m"  
 #define RED    "\033[31m"
 #define GREEN  "\033[32m"
 #define YELLOW "\033[33m"
 #define BLUE   "\033[34m"
-
 #define WHITE  "\033[37m"
 
 struct FileInfo
@@ -62,6 +61,8 @@ int main() {
 		std::cout << "File Size-" << file.size() << "\n";
 		std::sort(file.begin(), file.end(), sortFile);  // ! begin and end a methold that give an object ittrator that point at the begin  and end 
 		//! and this sort work in the file vector no need to make new var ect 
+		// ? in  this i will add binery search ! 
+	
 		for (size_t i = 0; i < file.size(); i++) {
 			std::wcout << GREEN << "[" << file[i].filename << "]" WHITE << '\n';
 		}
@@ -70,32 +71,23 @@ int main() {
 		std::wcout << RED << "Enter File Name-" << WHITE;
 		// !Use getline so it captures spaces! (std::ws clears any leftover invisible 'Enters')
 		std::getline(std::wcin >> std::ws, userGiveFileName);
-		for (size_t i = 0; i < file.size(); i++) {
-			if (file[i].filename == userGiveFileName) {
-				std::wcout << "found the file" << '\n';
-				std::wcout << RED << "File Location:" << file[i].filepath << '\n';
-				std::cout << "-----------------------------------------------------------" << std::endl;
-				{ // ? this is called block scope 
-					int usergiventemp{};
-					std::cout << GREEN << "Press (1) to open the file press (2) to not open the file-" << WHITE;
-					std::cin >> usergiventemp;
-					if (usergiventemp == 1) {
-						std::wstring command{ L"\"" + file[i].filepath + L"\"" };
-						_wsystem(command.c_str());
-
-					}
-					else {
-
-					}
-
-				}
+		 int leftFileIndex{}; // size_t ()  / 
+		 int rightFileIndex{ file.size() - 1 };  // this will give me last index 
+		 while (leftFileIndex <= rightFileIndex) { // loop need to work till left=right or < to right 
+			 int tempMiddle{(leftFileIndex + rightFileIndex) / 2};
+			 if (userGiveFileName == file[tempMiddle].filename) {
 				
 
+			 }
+			 else if () {
+
+			 }
 
 
-			}
 
-		}
+		 }
+
+		
 
 
 	}

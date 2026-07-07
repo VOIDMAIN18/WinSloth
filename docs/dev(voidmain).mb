@@ -506,4 +506,43 @@ The important idea is that binary search never checks every element. Every compa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-26-06-2026
+5-07-2026
+
+Today I was working on implementing binary search.
+
+At first I used unsigned int for left and right, but I ran into a problem. If I accidentally do something like:
+
+0 - 1
+
+an unsigned integer can't store negative values, so it underflows and becomes a very large positive number (for example, 4294967295 on a 32-bit unsigned integer).
+
+Then I tried size_t, thinking it would solve the problem.
+
+It didn't.
+
+size_t has the exact same issue because it's also an unsigned integer type. It can't represent negative numbers, so subtracting below zero causes underflow.
+
+For now, I'm considering using int instead because it supports negative values, making the logic easier while I'm learning.
+
+I also learned that many C++ implementations still use size_t for indexing containers because indices are never supposed to be negative. When using size_t, you have to structure the binary search carefully to avoid underflow, especially when updating right = mid - 1 if mid is 0.
+
+This was a good reminder that choosing a type isn't just about its size—it's about the range of values it can safely represent.
+
+
+# 07-07-2026
+
+Lately, coding has been harder than it should be. If I'm being honest, I've been lazy. I spend too much time watching YouTube and anime instead of building things.
+
+The strange part is that I genuinely love coding. The problem isn't passion—it's distraction.
+
+Starting today, I want to change that.
+
+From now on, I'll code every day and document everything I learn, no matter how small it seems. Every bug, every mistake, every concept, and every solution will go into my development journal.
+
+I'm doing this for myself, for C++, and for the goal of becoming a better low-level programmer.
+
+When I feel like wasting time, I'll remember why I started. Every hour spent building my skills moves me closer to understanding how computers really work.
+
+This is the beginning of my journey.
+
+
