@@ -6,6 +6,7 @@
 #include <algorithm> 
 #include <cstdlib>  
 
+
 #define RESET  "\033[0m"  
 #define RED    "\033[31m"
 #define GREEN  "\033[32m"
@@ -15,9 +16,9 @@
 
 struct FileInfo
 {
-
+	
 	std::wstring filename;  //!use w string casue win has many file name in hind and other language
-	std::wstring filepath;
+	std::wstring filepath; // key : 
 };
 
 bool sortFile(const FileInfo& file1, const FileInfo& file2) {
@@ -25,6 +26,7 @@ bool sortFile(const FileInfo& file1, const FileInfo& file2) {
 	return file1.filename < file2.filename; // if yes then true 
 
 }
+
 
 
 int main() {
@@ -35,7 +37,7 @@ int main() {
 	//! safely report errors 
 	std::error_code errorbyfilesystem;
 	// how the iterator will work 
-	auto option{ std::filesystem::directory_options::skip_permission_denied };
+	auto option{ std::filesystem::directory_options::skip_permission_denied }; // 
 	auto start{ std::filesystem::recursive_directory_iterator(targetFolder , option , errorbyfilesystem) };
 	auto end{ std::filesystem::recursive_directory_iterator() }; // ! this is the end point we wan't the start to be like this (mean that all file are pushed)
 
@@ -72,28 +74,27 @@ int main() {
 		// !Use getline so it captures spaces! (std::ws clears any leftover invisible 'Enters')
 		std::getline(std::wcin >> std::ws, userGiveFileName);
 		 int leftFileIndex{}; // size_t ()  / 
-		 int rightFileIndex{ file.size() - 1 };  // this will give me last index 
+		 int rightFileIndex{ int(file.size()) - 1 };  // this will give me last index 
 		 while (leftFileIndex <= rightFileIndex) { // loop need to work till left=right or < to right 
 			 int tempMiddle{(leftFileIndex + rightFileIndex) / 2};
 			 if (userGiveFileName == file[tempMiddle].filename) {
-				
+				 std::wcout << "Found The File" << '\n';
+				 std::wcout << "File Path-" << file[tempMiddle].filepath << '\n';
+				 break;
+			 } 
+			 else if (file[tempMiddle].filename < userGiveFileName) { 
+				 leftFileIndex = tempMiddle + 1; 
+			 }
+			 else{
+				 rightFileIndex = tempMiddle - 1; 
 
 			 }
-			 else if () {
-
-			 }
-
-
-
 		 }
-
-		
-
 
 	}
 
 
-
+	
 	system("pause");
 	return 0;
 
