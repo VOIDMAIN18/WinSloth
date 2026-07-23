@@ -1,11 +1,9 @@
-#include <iostream> // 
+#include "Win.h"
 #include <string> 
 #include <vector>
 #include <filesystem>  
 #include <sstream>
 #include <algorithm> 
-#include <cstdlib>  
-
 
 #define RESET  "\033[0m"  
 #define RED    "\033[31m"
@@ -13,6 +11,10 @@
 #define YELLOW "\033[33m"
 #define BLUE   "\033[34m"
 #define WHITE  "\033[37m"
+
+
+
+
 
 struct FileInfo
 {
@@ -80,6 +82,7 @@ int main() {
 			 if (userGiveFileName == file[tempMiddle].filename) {
 				 std::wcout << "Found The File" << '\n';
 				 std::wcout << "File Path-" << file[tempMiddle].filepath << '\n';
+				 winOpenFile(file[tempMiddle].filepath) ? std::cout << "fileopen \n" : std::cout << "not able to open file";
 				 break;
 			 } 
 			 else if (file[tempMiddle].filename < userGiveFileName) { 

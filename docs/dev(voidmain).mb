@@ -547,3 +547,41 @@ But I'm going to change that from now on.
 
 I've already finished Binary Search, and my long-term goal is to get into Web3 and Solana at a really low level. That's the direction I want to take in the future.
 
+--------------------------------------------------------------------------------------------------------
+# 23-07-2026
+
+For now, I'm using **WinAPI (`windows.h`)** to open files because it's much easier for my project.
+
+Earlier I was using `cstdlib` with `system()` / `_wsystem()`, but I didn't like it. It felt old, it wasn't very clean, and I even noticed weird things like the console opening for a moment. Since WinSloth is Windows-only for now, using the Windows API makes more sense.
+
+
+I also learned about `inline` functions.
+
+I know that `#include` is basically a preprocessor directive that copies the contents of the header file into the source file before compilation.
+
+Because of that, if I define `WinOpenFile()` directly inside a header and include it in multiple `.cpp` files, the linker will see multiple definitions of the same function and throw a linker error.
+
+I fixed that by marking the function as `inline`.
+
+The `inline` keyword tells the compiler and linker that it's okay for this function to have identical definitions in multiple translation units, so they should all be treated as the same function instead of causing an error.
+
+Another way to fix it would be to move the implementation into `win.cpp` and leave only the declaration in `win.h`, but for this small project I don't think that's necessary right now.
+
+
+Now the file-opening function is working.
+
+The next feature I want to build is a better search system.
+
+Right now the user has to type the exact filename. Instead, I want something smarter.
+
+For example, if the user types:
+
+```text
+t
+```
+
+the program should instantly display every file whose name starts with or contains the letter **'t'**.
+
+Eventually I want the search to update as the user types, making WinSloth feel much faster and easier to use.
+
+
