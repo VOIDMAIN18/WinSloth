@@ -30,7 +30,6 @@ bool sortFile(const FileInfo& file1, const FileInfo& file2) {
 }
 
 
-
 int main() {
 	std::string targetFolder{};
 	std::cout << "User Add The Folder To Scan-";  // -

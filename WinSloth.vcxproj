@@ -70,6 +70,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\ekans\voidmain\operatingSystem;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -140,15 +143,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Win.h" />
+    <ClCompile Include="operatingSystem\Win.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docs\dev%28voidmain%29.mb" />
-    <None Include="ReadMe.md" />
+    <None Include="docs\ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Linux.h" />
-    <ClInclude Include="mac.h" />
+    <ClInclude Include="operatingSystem\Linux.h" />
+    <ClInclude Include="operatingSystem\mac.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

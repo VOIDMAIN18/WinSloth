@@ -1,6 +1,9 @@
 #include <iostream>
 #include <Windows.h>
 
+
+
+
 inline bool winOpenFile(std::wstring filepath) {
    
     HINSTANCE result = ShellExecuteW(
@@ -14,3 +17,5 @@ inline bool winOpenFile(std::wstring filepath) {
 
     return result ?  1 :  0; 
 }
+
+
