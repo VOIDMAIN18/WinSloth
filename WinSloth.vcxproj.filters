@@ -36,5 +36,8 @@
     <ClInclude Include="operatingSystem\mac.h">
       <Filter>OpenFilesForOS</Filter>
     </ClInclude>
+    <ClInclude Include="Algorithm\algo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
