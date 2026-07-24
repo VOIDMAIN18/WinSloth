@@ -595,8 +595,14 @@ now i am learning how to make the search system in
 c++ "live filter" or "fuzzy finder" UI i wan't to make some thing like a ui 
 
 
-#25-07-2026 
-now i have done the live filter and now i am trying to make the console ui for this 
-and make the logic more good rn the fuzz finder is using ls but soon i will 
-use bs. 
+#25-07-2026
+Today I finished the basic **live filtering** feature. Now I'm working on improving the console UI and cleaning up the search logic.
+Right now the fuzzy finder is still using **linear search**, but I plan to replace it with **binary search** once the rest of the system is stable.
+I also added logic that automatically detects how many drives the user has. Based on that, the program can handle each drive differently instead of assuming a fixed setup.
+The biggest problem I'm facing now is performance.
+When there are thousands of files (10,000+), searching starts to feel slow. The scanning itself isn't the main issue—it's the search algorithm and how I'm displaying the results.
+At the moment, every matching file gets printed to the console, which is a terrible user experience and slows things down even more.
+My plan is to only display the first **10 matching files**. That should make the interface much cleaner and more responsive.
+Tomorrow I'll work on optimizing the search logic, improving the console UI, and making the overall experience smoother.
 
+#26-07-2026

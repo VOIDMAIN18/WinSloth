@@ -45,7 +45,6 @@ namespace consoleui {
             std::cout << DIM << "  Supported Platforms: Windows | Linux | macOS" << RESET << "\n\n";
             std::cout << "  " << GREEN << "●" << RESET << " Open Source " << DIM << "• Built by VOIDMAIN18 (C/C++)" << RESET << "\n\n";
             std::cout << "  " << BOLD_CYAN << "❯" << RESET << " Press " << BOLD_WHITE << "[ENTER]" << RESET << " to launch search... ";
-
             std::cin.get();
         }
     };

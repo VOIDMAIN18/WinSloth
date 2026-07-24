@@ -31,60 +31,75 @@ bool sortFile(const algo::FileSearch::FileInfo& file1, const algo::FileSearch::F
 
 int main() {
 	consoleUi.openwin();
-	std::wstring targetFolder{};
-	std::cout << "User Add The Folder To Scan-";  // -
-	std::getline(std::wcin, targetFolder);
-	std::vector foundfiles{ algogetfilelogic.storeFile(targetFolder)};
-	if (foundfiles.size() == 0) {
-		std::cerr << RED<< "error no file found" << GREEN;
+	std::clog << "LOG-Now Running SearchDriveFunc\n";
+	std::vector <std::wstring> totalDrivers{ algogetfilelogic.searchDrive() };
+	if (totalDrivers.size() > 1) {
+		std::cout << "Drivers more then 1"; 
+
 	}
 	else {
-		std::cout << foundfiles.size() << '\n';
+		std::cout << "only 1 driver \n"; 
+		std::wstring targetFolder{totalDrivers[0]};  // only 1  so fist index 
+		std::vector foundfiles{ algogetfilelogic.storeFile(targetFolder) };
+		if (foundfiles.size() == 0) {
+			std::cerr << RED << "error no file found" << GREEN;
+		}
+		else {
+			std::cout << foundfiles.size() << '\n';
+			std::clog << "File scan is done" << '\n';
+			Sleep(4000);
+			
+			std::wstring usergivenfilename{};
+			//fuzzy finder
+			while (true) {
+				wchar_t key{ static_cast<wchar_t>(_getch()) }; // in  this it will give error cause _getch is a int and if i try to store it in wchar which is small it will give error 
+				// to fix it i will convert it into wchar using casting 
+				if (key == 13) { // enter key 
+					std::cout << RED << "EXIT\n" << WHITE;
+					break;
 
-		std::wstring usergivenfilename{};
-		//fuzzy finder
-		while (true) {
-			wchar_t key{ static_cast<wchar_t>(_getch()) }; // in  this it will give error cause _getch is a int and if i try to store it in wchar which is small it will give error 
-			// to fix it i will convert it into wchar using casting 
-			if (key == 13) { // enter key 
-				std::cout <<RED<< "EXIT\n" << WHITE;
-				break;
+				}
+				else {
+					usergivenfilename += key;
+					system("cls"); // !  just for test 
+					std::wcout << L"Search:" << usergivenfilename << L"\n\n";
+					std::vector<algo::FileSearch::FileInfo>currectmatch{ algogetfilelogic.fuzzyFinder(usergivenfilename , foundfiles) };
+					for (size_t i{}; i < currectmatch.size(); i++) {
+						std::wcout << L"[" << GREEN << "(" << i << ")" << RED << currectmatch[i].filename << RED << "]" << L"\n\n";
 
-			}
-			else {
-				usergivenfilename += key; 
-				system("cls"); // !  just for test 
-				std::wcout << L"Search:" << usergivenfilename << L"\n\n";
-				std::vector<algo::FileSearch::FileInfo>currectmatch{ algogetfilelogic.fuzzyFinder(usergivenfilename , foundfiles) };
-				for (size_t i{}; i < currectmatch.size(); i++) {
-					std::wcout << L"[" << GREEN <<  "(" << i << ")" << RED << currectmatch[i].filename << RED << "]" << L"\n\n";
-					
+
+
+
+
+					}
+
+
+
+
+
 
 
 
 
 				}
-				 
 
-
-			
-
-
-
-
-				
 			}
 
+
+
+
+
+
+
 		}
-	
-		
-
-
-	
-
 
 	}
 	
+
+
+
+
+
 
 	
 	system("pause");

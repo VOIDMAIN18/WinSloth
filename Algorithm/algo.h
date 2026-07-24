@@ -20,6 +20,34 @@ namespace algo {
 		std::vector<FileInfo> file{};
 		std::error_code errorbyfilesystem;
 
+		std::vector <std::wstring> searchDrive () {
+			std::wclog << "LOG-Now In SearchDriveFunc\n";
+			std::wcout << L"Able to Print The Wide String Case done!\n";
+			// !  making a vec to store all the drivers 
+			std::vector <std::wstring> totaldrivers{};
+			// now we are trying to see how many drives the user have in his/her  pc 
+			for (wchar_t j{ L'A' }; j <= L'Z'; j++) {
+
+				std::wstring drivepath{j};
+				drivepath += L":\\";
+
+				if (std::filesystem::exists(drivepath)) {
+					totaldrivers.push_back(drivepath);  
+				}
+			}
+			
+
+			return totaldrivers;
+			
+
+
+	    }
+
+
+		
+
+
+
 	public: 
 		std::vector<FileInfo> storeFile(std::wstring targetFolder) {
 			
