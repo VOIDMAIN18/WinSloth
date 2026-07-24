@@ -70,6 +70,24 @@ namespace algo {
 			}
 		} 
 
+		 // !fuzzy finder
+
+		std::vector <FileInfo> fuzzyFinder(std::wstring usergivenfilechar , std::vector<FileInfo>file) {
+			std::vector <FileInfo>foundFile{};
+			for (size_t i{}; i < file.size(); i++) {
+				if (file[i].filename.find(usergivenfilechar) != std::wstring::npos) {
+					// found the match and now we have to save it 
+					foundFile.push_back(file[i]); // a then pushback the index
+				}
+				
+
+			}
+			return foundFile; 
+		
+			
+
+
+		}
 
 
 

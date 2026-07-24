@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\ekans\voidmain\Algorithm;C:\Users\ekans\voidmain\operatingSystem;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ekans\voidmain\Ui;C:\Users\ekans\voidmain\Algorithm;C:\Users\ekans\voidmain\operatingSystem;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -153,6 +153,7 @@
     <ClInclude Include="Algorithm\algo.h" />
     <ClInclude Include="operatingSystem\Linux.h" />
     <ClInclude Include="operatingSystem\mac.h" />
+    <ClInclude Include="Ui\console.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

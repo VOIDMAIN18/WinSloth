@@ -585,3 +585,18 @@ the program should instantly display every file whose name starts with or contai
 Eventually I want the search to update as the user types, making WinSloth feel much faster and easier to use.
 
 we are trying to make it for win rn and i am trying to make the code restructure 
+
+
+#24-07-2026
+
+now i wan't to make a basic scanning function  that will auto push or show the text the user write and show all the files that use the same name 
+that will not use the basic std it will use 
+now i am learning how to make the search system in
+c++ "live filter" or "fuzzy finder" UI i wan't to make some thing like a ui 
+
+
+#25-07-2026 
+now i have done the live filter and now i am trying to make the console ui for this 
+and make the logic more good rn the fuzz finder is using ls but soon i will 
+use bs. 
+

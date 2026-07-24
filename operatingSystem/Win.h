@@ -1,10 +1,12 @@
+#pragma once
+
 #include <iostream>
 #include <Windows.h>
 
 
 
 
-inline bool winOpenFile(std::wstring filepath) {
+inline  bool winOpenFile(std::wstring filepath) {
    
     HINSTANCE result = ShellExecuteW(
         nullptr,          // No parent window
