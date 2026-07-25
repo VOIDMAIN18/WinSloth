@@ -8,7 +8,7 @@
 
 namespace algo {
 	class FileSearch {
-	public : 
+	public:
 		struct FileInfo
 		{
 
@@ -16,41 +16,35 @@ namespace algo {
 			std::wstring filepath; // key : 
 		};
 
-		
+
 		std::vector<FileInfo> file{};
 		std::error_code errorbyfilesystem;
 
-		std::vector <std::wstring> searchDrive () {
+		std::vector <std::wstring> searchDrive() {
 			std::wclog << "LOG-Now In SearchDriveFunc\n";
-			std::wcout << L"Able to Print The Wide String Case done!\n";
 			// !  making a vec to store all the drivers 
 			std::vector <std::wstring> totaldrivers{};
 			// now we are trying to see how many drives the user have in his/her  pc 
 			for (wchar_t j{ L'A' }; j <= L'Z'; j++) {
 
-				std::wstring drivepath{j};
+				std::wstring drivepath{ j };
 				drivepath += L":\\";
 
 				if (std::filesystem::exists(drivepath)) {
-					totaldrivers.push_back(drivepath);  
+					totaldrivers.push_back(drivepath);
 				}
 			}
-			
+
 
 			return totaldrivers;
-			
-
-
-	    }
-
-
-		
 
 
 
-	public: 
+		}
+
+	public:
 		std::vector<FileInfo> storeFile(std::wstring targetFolder) {
-			
+
 			// how the iterator will work 
 			auto option{ std::filesystem::directory_options::skip_permission_denied }; // 
 			auto start{ std::filesystem::recursive_directory_iterator(targetFolder , option , errorbyfilesystem) };
@@ -85,34 +79,53 @@ namespace algo {
 					std::cout << "found the file";
 					return tempmiddle;
 
-				}else if (file[tempmiddle].filename <  fileName) {  // c < d  
-					leftindex = tempmiddle + 1; 
+				}
+				else if (file[tempmiddle].filename < fileName) {  // c < d  
+					leftindex = tempmiddle + 1;
 
 				}
 				else {
-					rightindex = tempmiddle - 1; 
+					rightindex = tempmiddle - 1;
 
 				}
 
 
 			}
-		} 
+		}
 
-		 // !fuzzy finder
 
-		std::vector <FileInfo> fuzzyFinder(std::wstring usergivenfilechar , std::vector<FileInfo>file) {
+
+		// !fuzzy finder
+
+		std::vector <FileInfo> fuzzyFinder(std::wstring usergivenfilechar, std::vector<FileInfo>file) {
 			std::vector <FileInfo>foundFile{};
+
 			for (size_t i{}; i < file.size(); i++) {
-				if (file[i].filename.find(usergivenfilechar) != std::wstring::npos) {
+				if (file[i].filename.find(usergivenfilechar) == 0) {  // uint64 == 
 					// found the match and now we have to save it 
+						 /*
+                        * OPTIMIZATION NOTE:
+                       * We use `.find(usergivenfilechar) == 0` (or `.starts_with()`) instead of a manual letter-by-letter loop.
+                      * C++ built-in string functions automatically handle the index-by-index matching
+                       * (e.g., user[0] == file[0], user[1] == file[1]) under the hood.
+                    * Because it's a standard library function, it is highly optimized at the
+                    * machine level and significantly faster than a custom `for` loop.
+                        */
 					foundFile.push_back(file[i]); // a then pushback the index
+
+
+
 				}
-				
+
 
 			}
-			return foundFile; 
-		
-			
+			return foundFile;
+
+			// ? break of 10 min  
+
+
+
+
 
 
 		}
@@ -123,10 +136,10 @@ namespace algo {
 
 
 
-	 
 
-	
-	
+
+
+
 
 
 	};

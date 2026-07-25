@@ -606,3 +606,15 @@ My plan is to only display the first **10 matching files**. That should make the
 Tomorrow I'll work on optimizing the search logic, improving the console UI, and making the overall experience smoother.
 
 #26-07-2026
+1- fix the scanning time ()
+2- fix the search system just display 10 files ()
+3 - use bs for the search system ()
+4 - make the code more structured ()
+5 - fix some ui bugs ()
+
+I'm fixing some UI issues. To make the scanning faster, I need to implement multithreading, but I don't know how to do that yet, so I'll leave it for now.
+
+Right now, it's only printing 10 files, and I'm also running into a vector-related error. I'm trying to use `clog` to log what the program is doing internally.
+
+At the moment, I'm trying to open the file from the first element of the array (or vector), but it keeps throwing an error that I have no idea how to fix.
+

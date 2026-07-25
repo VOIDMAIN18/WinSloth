@@ -19,6 +19,7 @@
 algo::FileSearch algogetfilelogic;
 consoleui::MainUiStart consoleUi;
 
+
 bool sortFile(const algo::FileSearch::FileInfo& file1, const algo::FileSearch::FileInfo& file2) {
 	// file1 and 2 for comp
 	// ! algo::FileSearch::FileInfo why i am using this cause if i use algogetfilelogic it will give error cause c++ is very strict to make the diff b/w 
@@ -31,24 +32,26 @@ bool sortFile(const algo::FileSearch::FileInfo& file1, const algo::FileSearch::F
 
 int main() {
 	consoleUi.openwin();
-	std::clog << "LOG-Now Running SearchDriveFunc\n";
+	std::wclog << "LOG-Now Running SearchDriveFunc\n";
 	std::vector <std::wstring> totalDrivers{ algogetfilelogic.searchDrive() };
 	if (totalDrivers.size() > 1) {
 		std::cout << "Drivers more then 1"; 
 
 	}
 	else {
-		std::cout << "only 1 driver \n"; 
-		std::wstring targetFolder{totalDrivers[0]};  // only 1  so fist index 
+		std::wcout << "only 1 driver \n"; 
+		std::wstring targetFolder{totalDrivers[0]}; 
+		// x need to make it fast storing file
+		std::wclog << "LOG- Now Running storfileFunc\n";
 		std::vector foundfiles{ algogetfilelogic.storeFile(targetFolder) };
+		std::wclog << "LOG- Storefile Fun is done\n"; 
 		if (foundfiles.size() == 0) {
 			std::cerr << RED << "error no file found" << GREEN;
 		}
 		else {
 			std::cout << foundfiles.size() << '\n';
 			std::clog << "File scan is done" << '\n';
-			Sleep(4000);
-			
+			system("cls");
 			std::wstring usergivenfilename{};
 			//fuzzy finder
 			while (true) {
@@ -61,16 +64,16 @@ int main() {
 				}
 				else {
 					usergivenfilename += key;
-					system("cls"); // !  just for test 
 					std::wcout << L"Search:" << usergivenfilename << L"\n\n";
-					std::vector<algo::FileSearch::FileInfo>currectmatch{ algogetfilelogic.fuzzyFinder(usergivenfilename , foundfiles) };
-					for (size_t i{}; i < currectmatch.size(); i++) {
+					std::vector<algo::FileSearch::FileInfo>currectmatch{ algogetfilelogic.fuzzyFinder(usergivenfilename , foundfiles) }; 
+
+					for (size_t i{}; i < 10; i++) {
 						std::wcout << L"[" << GREEN << "(" << i << ")" << RED << currectmatch[i].filename << RED << "]" << L"\n\n";
-
-
-
-
-
+						if (key == 27) { // enter key
+							
+							winOpenFile(currectmatch[0].filepath);
+						
+						}
 					}
 
 
