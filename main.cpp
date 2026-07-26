@@ -8,12 +8,15 @@
 #include <algorithm> 
 #include <conio.h> // for ui of fuzzy finder and header file provided by Microsoft
 
-#define RESET  "\033[0m"  
-#define RED    "\033[31m"
-#define GREEN  "\033[32m"
-#define YELLOW "\033[33m"
-#define BLUE   "\033[34m"
-#define WHITE  "\033[37m"
+
+
+// ! all the var 
+
+
+
+std::wstring usergivenfilename{};
+std::vector<algo::FileSearch::FileInfo>currectmatch{};
+
 
 
 algo::FileSearch algogetfilelogic;
@@ -32,8 +35,8 @@ bool sortFile(const algo::FileSearch::FileInfo& file1, const algo::FileSearch::F
 
 int main() {
 	consoleUi.openwin();
-	std::wclog << "LOG-Now Running SearchDriveFunc\n";
 	std::vector <std::wstring> totalDrivers{ algogetfilelogic.searchDrive() };
+	std::wclog << "LOG-Now Running SearchDriveFunc\n";
 	if (totalDrivers.size() > 1) {
 		std::cout << "Drivers more then 1"; 
 
@@ -44,7 +47,9 @@ int main() {
 		// x need to make it fast storing file
 		std::wclog << "LOG- Now Running storfileFunc\n";
 		std::vector foundfiles{ algogetfilelogic.storeFile(targetFolder) };
-		std::wclog << "LOG- Storefile Fun is done\n"; 
+		std::wclog << "LOG- Storefile Func is done\n";
+		std::sort(foundfiles.begin() , foundfiles.end(), sortFile); 
+		std::wclog << "LOG- File Sort is done ";
 		if (foundfiles.size() == 0) {
 			std::cerr << RED << "error no file found" << GREEN;
 		}
@@ -52,41 +57,56 @@ int main() {
 			std::cout << foundfiles.size() << '\n';
 			std::clog << "File scan is done" << '\n';
 			system("cls");
-			std::wstring usergivenfilename{};
+		
 			//fuzzy finder
-			while (true) {
+			while (true) { //  it is re taking the value that the user given file name and then char by char 
 				wchar_t key{ static_cast<wchar_t>(_getch()) }; // in  this it will give error cause _getch is a int and if i try to store it in wchar which is small it will give error 
 				// to fix it i will convert it into wchar using casting 
-				if (key == 13) { // enter key 
+				if (key == 27) { // esc key 
 					std::cout << RED << "EXIT\n" << WHITE;
 					break;
 
 				}
 				else {
-					usergivenfilename += key;
-					std::wcout << L"Search:" << usergivenfilename << L"\n\n";
-					std::vector<algo::FileSearch::FileInfo>currectmatch{ algogetfilelogic.fuzzyFinder(usergivenfilename , foundfiles) }; 
 
-					for (size_t i{}; i < 10; i++) {
-						std::wcout << L"[" << GREEN << "(" << i << ")" << RED << currectmatch[i].filename << RED << "]" << L"\n\n";
-						if (key == 27) { // enter key
-							
-							winOpenFile(currectmatch[0].filepath);
+					
+					// 1 if the user is giving  /r or /t 
+					if (key!=9 && key!=13 ) { 
+						usergivenfilename += key; // 
+						std::wcout << L"Search:" << usergivenfilename << L"\n\n";
+						currectmatch = algogetfilelogic.fuzzyFinder(usergivenfilename , foundfiles) ;
+						// ! THIS IS FOR print only 
+						for (size_t i{}; i < currectmatch.size() && i < 10; i++) { // ! the error way it was cou till 10 
+							std::wcout << L"[" << GREEN << "(" << i << ")" << RED << currectmatch[i].filename << RED << "]" << L"\n\n";
+
+						}
+
+
+
+					}
+					else if (key == 13) {
+
 						
+						if (!currectmatch.empty()) {
+							winOpenFile(currectmatch[0].filepath);
 						}
 					}
-
-
-
-
-
-
-
-
 
 				}
 
 			}
+
+
+	
+
+
+
+
+
+
+
+
+
 
 
 

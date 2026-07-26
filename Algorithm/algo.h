@@ -70,6 +70,9 @@ namespace algo {
 
 		}
 
+
+
+
 		size_t binarySearch(std::wstring fileName, std::vector<FileInfo>file) {
 			size_t leftindex{}; // 0 
 			size_t rightindex{ file.size() - 1 }; // 9 
@@ -100,29 +103,16 @@ namespace algo {
 		std::vector <FileInfo> fuzzyFinder(std::wstring usergivenfilechar, std::vector<FileInfo>file) {
 			std::vector <FileInfo>foundFile{};
 
-			for (size_t i{}; i < file.size(); i++) {
-				if (file[i].filename.find(usergivenfilechar) == 0) {  // uint64 == 
-					// found the match and now we have to save it 
-						 /*
-                        * OPTIMIZATION NOTE:
-                       * We use `.find(usergivenfilechar) == 0` (or `.starts_with()`) instead of a manual letter-by-letter loop.
-                      * C++ built-in string functions automatically handle the index-by-index matching
-                       * (e.g., user[0] == file[0], user[1] == file[1]) under the hood.
-                    * Because it's a standard library function, it is highly optimized at the
-                    * machine level and significantly faster than a custom `for` loop.
-                        */
-					foundFile.push_back(file[i]); // a then pushback the index
+			for (size_t i{}; i < file.size(); i++ ) {
 
-
-
+				if (file[i].filename.find(usergivenfilechar) == 0 ) {
+					foundFile.push_back(file[i]);
 				}
 
-
 			}
-			return foundFile;
 
-			// ? break of 10 min  
-
+			return foundFile; 
+			
 
 
 

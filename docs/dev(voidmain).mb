@@ -618,3 +618,24 @@ Right now, it's only printing 10 files, and I'm also running into a vector-relat
 
 At the moment, I'm trying to open the file from the first element of the array (or vector), but it keeps throwing an error that I have no idea how to fix.
 
+#27-07-2026
+1- Fixed the `OpenFile` function (`win.h`) 
+
+Now I'm able to open files correctly.
+The error was caused by pressing **Enter (`\r`, ASCII 13)**. I was passing that `wchar_t` directly to my function, and since it's an invisible control character, it broke the vector logic.
+I fixed it by ignoring non-printable characters and only handling Enter in a separate `else if` block to open the selected file.
+I also moved the `currentMatch` vector outside the `while` loop. Recreating the vector every iteration was causing it to reset and break the logic. Basic mistake, but it's fixed now.
+
+also file sort is done ! 
+
+2- Now i need to make the search more faster 
+
+
+
+3. Add a typing delay before searching
+
+I'm thinking of adding a small delay before starting the search. Let's say 100 ms. If the user is still typing and the gap between two key presses is less than 100 ms, the search will wait. Once the user stops typing for more than 100 ms, it'll start the search. I think this will 
+avoid unnecessary searches and make everything feel a bit smoother.
+
+
+
