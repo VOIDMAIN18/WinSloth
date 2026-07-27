@@ -43,8 +43,8 @@ namespace consoleui {
             std::cout << DIM << "  ────────────────────────────────────────────" << RESET << "\n";
             std::cout << BOLD_WHITE << "  Fast file & executable search engine." << RESET << "\n";
             std::cout << DIM << "  Supported Platforms: Windows | Linux | macOS" << RESET << "\n\n";
-            std::cout << "  " << GREEN << "●" << RESET << " Open Source " << DIM << "• Built by VOIDMAIN18 (C/C++)" << RESET << "\n\n";
-            std::cout << "  " << BOLD_CYAN << "❯" << RESET << " Press " << BOLD_WHITE << "[ENTER]" << RESET << " to launch search... " << std::endl;
+            std::cout << "  " << GREEN << "●" << RESET << " Open Source " << DIM << "• Built by VOIDMAIN18 (C/C++)\n" << RESET << std::endl;
+           
            
             
         }

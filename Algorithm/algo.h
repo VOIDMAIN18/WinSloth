@@ -21,7 +21,6 @@ namespace algo {
 		std::error_code errorbyfilesystem;
 
 		std::vector <std::wstring> searchDrive() {
-			std::wclog << "LOG-Now In SearchDriveFunc\n";
 			// !  making a vec to store all the drivers 
 			std::vector <std::wstring> totaldrivers{};
 			// now we are trying to see how many drives the user have in his/her  pc 
